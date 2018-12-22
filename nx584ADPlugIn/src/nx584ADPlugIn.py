@@ -11,11 +11,16 @@ class HomeBridgePing(model.NX584Extension):
             searchPaths = [os.path.join(os.path.realpath('nx584ADPlugIn'), '.nx584ADPlugIn.cfg'),
                            os.path.join(os.path.expanduser('~'), '.nx584ADPlugIn.cfg'),
                            os.path.join(os.path.curdir, '.nx584ADPlugIn.cfg')]
-            self._config.read(searchPaths)
+            readfiles = self._config.read(searchPaths)
         else:
             self._config.read(config)
-        assert self._config['nx584ADPlugIn']['homebridgeURL'] is not None
+        try:
+            assert self._config['nx584ADPlugIn']['homebridgeURL'] is not None
+        except Exception as error:
+            print('config file could not be found or not in correct format')
+            raise Exception
         self.url = self._config['nx584ADPlugIn']['homebridgeURL']
+        print('Config file in use at: {0}'.format(readfiles))
 
     def sendPing(self):
         try:

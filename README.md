@@ -4,12 +4,18 @@ This is a plugin to the [pynx584 module](https://github.com/kk7ds/pynx584) to en
 
 ## Installation
 
+Normal Approach:
+
 1. Clone repo `git clone https://github.com/aficustree/nx584ADPlugIn`
-2. Change to directory where installed `cd nx584ADPlugIn`
+2. Change to directory where cloned `cd ./nx584ADPlugIn/nx584ADPlugIn`
 3. Install via `pip3 install .`
-4. Edit configuration file and place in home directory
+4. Edit configuration file and place in home directory 
 5. Run pynx584 server module `nx584_server --serial /dev/ttyS0 --baud 38400` (or equiv)
 6. Enjoy
+
+If integrating into Dockerized nx584:
+
+The pynx584 module includes plugin support by mapping a directory on your host machine to the nx584 docker container. This allows the container to load multiple plugins by copying each plugin to the /plugins folder and updating the requirements.txt file with the appropriate path.
 
 ## Configuration
 
